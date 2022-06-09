@@ -1,6 +1,8 @@
-let people = [];
+let peoples = [];
 
-const loadPeople = () => {
+let identificadorQueTaSendoEditado = null;
+
+const loadPeoples = () => {
   const itemsJaArmazenados = localStorage.getItem('listaDePessoas');
   return itemsJaArmazenados ? JSON.parse(itemsJaArmazenados) : [];
 }
@@ -8,15 +10,18 @@ const loadPeople = () => {
 const onClickEdit = (element) => {
   const identificadorASerEncontrado = 
     element.getAttribute('identificador');
-  const people = loadPeople();
-  console.log('carregar pessoas', people);
+
+  identificadorQueTaSendoEditado = +identificadorASerEncontrado;
+  
+  const peoples = loadPeoples();
+  console.log('carregar pessoas', peoples);
   let pessoaEncontrada = {
     name: '',
     age: '',
     height: ''
   };
 
-  people.forEach((pessoa, identificador) => {
+  peoples.forEach((pessoa, identificador) => {
     if (identificador === +identificadorASerEncontrado) {
       pessoaEncontrada.age = pessoa.age;
       pessoaEncontrada.name = pessoa.name;
@@ -33,13 +38,33 @@ const onClickEdit = (element) => {
 
 const onClickRemove = (element) => {
   const identificadorASerEncontrado = 
-    element.getAttribute('identificador');
-  const people = loadPeople();
-  console.log('carregar pessoas', people);
-  let pessoaEncontrada = {
-    name: '',
-    age: '',
-    height: ''
+  +element.getAttribute('identificador');
+
+  const pessoas = loadPeoples();
+
+  pessoas.splice(identificadorASerEncontrado, 1);
+  
+  localStorage.setItem('listaDePessoas', JSON.stringify(pessoas));
+  listPeoples();
+}
+
+const salvarRegistroEditado = (registroSendoEditado) => {
+  const pessoas = loadPeoples();
+  const pessoasAtualizadas = pessoas.map((pessoa, index) => { 
+    if (identificadorQueTaSendoEditado === index) {
+      pessoa.name = registroSendoEditado.name;
+      pessoa.age = registroSendoEditado.age;
+      pessoa.height = registroSendoEditado.height;
+    }
+    return pessoa;
+  })
+
+  localStorage.setItem('listaDePessoas', JSON.stringify(pessoasAtualizadas));
+
+  identificadorQueTaSendoEditado = null;
+
+  listPeoples();
+  document.querySelector('form').reset();
 }
 
 
@@ -67,8 +92,8 @@ const span = (identificador) => {
   return span;
 } 
 
-const listPeople = () => {
-  const people = loadPeople();
+const listPeoples = () => {
+  const peoples = loadPeoples();
   
   let ul = document.querySelector('ul');
   if (ul) {
@@ -77,7 +102,7 @@ const listPeople = () => {
   
   ul = document.createElement('ul');
  
-  people.forEach((item, identificador) => {
+  peoples.forEach((item, identificador) => {
     const li = document.createElement('li');
     li.innerHTML = 
     
@@ -93,25 +118,32 @@ const listPeople = () => {
   document.getElementById('list-section').appendChild(ul);
 }
 
-listPeople();
+listPeoples();
 
 const addPeople = (event) => {
   event.preventDefault();
+
   const people = {
     name: document.getElementById('name').value,
     age: document.getElementById('age').value,
     height: document.getElementById('height').value,
   }
+  console.log('after save registry', identificadorQueTaSendoEditado);
+  if (identificadorQueTaSendoEditado || identificadorQueTaSendoEditado === 0) {
+    salvarRegistroEditado(people);
+    return;
+  }
   
-  people = loadPeople();
+  peoples = loadPeoples();
 
-  people.push(people);
+  console.log('after save registry');
+  peoples.push(people);
   
-  localStorage.setItem('listaDePessoas', JSON.stringify(people));
+  localStorage.setItem('listaDePessoas', JSON.stringify(peoples));
 
   document.querySelector('form').reset();
 
-  listPeople();
+  listPeoples();
 }
 
 
