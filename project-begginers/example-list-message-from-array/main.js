@@ -146,9 +146,5 @@ const addPeople = (event) => {
   listPeoples();
 }
 
-
-
-
 const botaoDeAdicionar = document.getElementById('btn');
 botaoDeAdicionar.addEventListener('click', addPeople)
-

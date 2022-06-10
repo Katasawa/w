@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, boyd {
+    height: 100%;
+  }
+  
+  :root {
+    --primary-color: #ff2b36;
+    --bg-color-primary: #ff2b36;
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-size: 1.6rem;
+    font-family: 'Fira Code', monospace;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  }
+
+  
+  form  {
+    margin-top: 4rem !important;
+    margin: 0 auto;
+    display: grid;
+    width: 50%;
+    color: rgb(255, 0, 0);
+  }
+  
+  input, button {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+  }
+  
+  label {
+    margin-top: 1rem;
+  }
+  
+  button {
+    margin-top: 2rem;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    background-color: var(--bg-color-primary);
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  #list-section {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  
