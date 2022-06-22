@@ -1,0 +1,29 @@
+<head runat="server">
+    <title>Lista de Contatos </title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <script language="javascript" src="main.js"></script>
+        <script src="style.css"></script>
+        <center>Agenda de Atividades<br/><br/>
+            <table>
+                <tr>
+                  <td>
+                    <select id="lista" style="width: 209px; height: 121px" multiple>
+                    </select>
+                  </td>
+                 <td colspan="1" rowspan="1">
+                    <input id="adicionaTarefas" type="button" value="Adicionar" onclick="adicionaTarefa()"/><br/>
+                    <input id="removeTarefas" type="button" value="Remover" onclick="removeTarefa()"/><br/>
+                    <input id="concluida" type="button" value="Concluida"  onclick="tarefaConcluida()"/>
+                </td>
+              </tr>
+             <tr>
+                 <td>
+                    <input id="boxTarefa" type="text" style="width: 203px; height: 15px" maxlength="30"/>
+                </td>
+             </tr>
+                
+      </table>
+     

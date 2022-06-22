@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, boyd {
+    height: 100%;
+  }
+  
+  :root {
+    --primary-color: #2bff64;
+    --bg-color-primary: #2bff64;
+    font-size: 62.5%;
+  }
+  .adicionarTarefa{
+    width: 118px; 
+    height: 28px
+  }
+  .removerTarefa{
+    width: 118px; 
+    height: 28px
+  }
+  .moverParaCima{
+    width: 118px; 
+    height: 28px
+  }
+  .moverParaBaixo{
+    width: 118px; 
+    height: 28px
+  }
